@@ -1,0 +1,377 @@
+/*
+  Images à placer dans un dossier "img" à côté de ce fichier :
+    img/etoiles.jpg   -> ciel étoilé (accueil)
+    img/portrait.jpg  -> photo de profil
+    img/nuages.jpg    -> ciel nuageux (compétences)
+    img/arbre.jpg     -> arbre dans la brume (contact)
+  Tant que les images n'existent pas, des dégradés prennent leur place.
+*/
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Open Sans Condensed", "Arial Narrow", Arial, sans-serif;
+  font-weight: 300;
+  color: #000;
+  background: #fff;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+/* ===== Header / menu ===== */
+#lien {
+  height: 82px;
+  background: #fff;
+}
+
+.menu {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu a {
+  width: 172px;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 16px;
+  color: #222;
+  transition: color .2s;
+}
+
+.menu a:hover {
+  color: #3a6bb0;
+}
+
+/* ===== Accueil ===== */
+.accueil {
+  height: 656px;
+  padding-top: 100px;
+  text-align: center;
+  color: #fff;
+  background:
+    url("img/etoiles.jpg") center / cover no-repeat,
+    radial-gradient(circle at 20% 30%, #0e3a63 0%, transparent 45%),
+    radial-gradient(circle at 80% 70%, #0b3055 0%, transparent 50%),
+    linear-gradient(180deg, #060f26 0%, #0b2347 55%, #0a3a5c 100%);
+}
+
+.portrait {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  border-radius: 50%;
+  background:
+    url("img/portrait.jpg") center / cover no-repeat,
+    radial-gradient(circle at 50% 38%, #bbb 0 28%, #888 29% 100%);
+  border: 0;
+}
+
+.accueil h1 {
+  margin-top: 16px;
+  font-size: 48px;
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+.metier {
+  margin-top: 4px;
+  font-size: 20px;
+  color: rgba(255, 255, 255, .7);
+}
+
+/* ===== Réseaux sociaux (accueil + footer) ===== */
+.reseaux {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 30px;
+}
+
+.accueil .reseaux {
+  margin-top: 98px;
+}
+
+.reseaux a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  min-width: 36px;
+  padding: 0 4px 6px;
+  color: rgba(190, 190, 190, .9);
+  border-bottom: 1px solid rgba(255, 255, 255, .5);
+  transition: color .2s;
+}
+
+.reseaux a:hover {
+  color: #fff;
+}
+
+.logo-in {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 34px;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+/* ===== Grille 2 x 2 ===== */
+.grille {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.bloc {
+  min-height: 602px;
+  position: relative;
+}
+
+/* ===== Blocs texte (éducations / expériences) ===== */
+.bloc-texte {
+  background: #fff;
+  padding: 25px 17px 40px;
+}
+
+.bloc-texte h2 {
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 1.2;
+  padding-bottom: 13px;
+  border-bottom: 1px solid #000;
+}
+
+.element {
+  display: flex;
+  margin-top: 20px;
+  min-height: 136px;
+}
+
+.element:first-of-type {
+  margin-top: 20px;
+}
+
+.element-date {
+  flex: 0 0 231px;
+  padding: 16px 0 0 40px;
+  border-right: 1px solid #bbb;
+}
+
+.date {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.lieu {
+  margin-top: 18px;
+  font-size: 15px;
+}
+
+.element-contenu {
+  flex: 1;
+  padding: 16px 0 0 20px;
+  border-right: 0;
+}
+
+.element-contenu h3 {
+  font-size: 16px;
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 20px;
+}
+
+.element-contenu p {
+  margin-top: 16px;
+  font-size: 15px;
+  line-height: 22px;
+}
+
+/* Le bloc expériences a une colonne date plus étroite et une marge à gauche */
+#experiences {
+  padding-left: 17px;
+}
+
+#experiences .element-date {
+  flex-basis: 231px;
+}
+
+/* ===== Compétences (fond ciel) ===== */
+.bloc-ciel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    url("img/nuages.jpg") center / cover no-repeat,
+    radial-gradient(ellipse at 25% 20%, #ffffff 0%, transparent 40%),
+    radial-gradient(ellipse at 40% 55%, #dfe7f1 0%, transparent 35%),
+    linear-gradient(160deg, #d9e3ee 0%, #7fa1c9 45%, #2f5f9c 100%);
+}
+
+.competences {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  padding: 0 40px;
+}
+
+.competences li {
+  position: relative;
+  width: 100px;
+  text-align: center;
+  color: #fff;
+}
+
+.cercle {
+  display: block;
+  width: 100px;
+  height: 100px;
+  transform: rotate(-90deg);
+}
+
+.cercle circle {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 8;
+  stroke-dasharray: calc(var(--valeur) * 1) calc(100 - var(--valeur));
+}
+
+.pourcent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+}
+
+.nom {
+  display: block;
+  margin-top: 16px;
+  font-size: 16px;
+}
+
+/* ===== Contact (fond arbre) ===== */
+.bloc-contact {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    url("img/arbre.jpg") center / cover no-repeat,
+    radial-gradient(ellipse at 50% 100%, #8a7bb8 0%, transparent 55%),
+    linear-gradient(180deg, #fdeee4 0%, #f2e4e4 60%, #d8cde0 100%);
+}
+
+.contact {
+  text-align: center;
+  padding-top: 40px;
+}
+
+.contact p {
+  font-size: 26px;
+  font-weight: 400;
+}
+
+.bouton-contact {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 0 58px;
+  height: 54px;
+  line-height: 54px;
+  background: #000;
+  color: #fff;
+  font-size: 26px;
+  font-weight: 400;
+  transition: background .2s;
+}
+
+.bouton-contact:hover {
+  background: #3a6bb0;
+}
+
+/* ===== Footer ===== */
+.footer {
+  position: relative;
+  height: 100px;
+  background: #000;
+  color: #fff;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+
+.copyright {
+  justify-self: center;
+  font-size: 15px;
+  font-weight: 400;
+  margin-top: 6px;
+  margin-right: 250px;
+}
+
+.reseaux-footer {
+  justify-content: center;
+  margin-left: 0;
+  padding-top: 4px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 980px) {
+  .grille {
+    grid-template-columns: 1fr;
+  }
+
+  .bloc-ciel,
+  .bloc-contact {
+    min-height: 420px;
+  }
+
+  .menu a {
+    width: auto;
+    padding: 0 12px;
+    font-size: 14px;
+  }
+
+  .element {
+    flex-direction: column;
+  }
+
+  .element-date {
+    flex-basis: auto;
+    border-right: 0;
+    padding-left: 0;
+  }
+
+  .element-contenu {
+    padding-left: 0;
+  }
+
+  .footer {
+    grid-template-columns: 1fr;
+    height: auto;
+    padding: 20px 0;
+    gap: 10px;
+  }
+
+  .copyright {
+    margin: 0;
+  }
+}
