@@ -1,377 +1,532 @@
-/*
-  Images à placer dans un dossier "img" à côté de ce fichier :
-    img/etoiles.jpg   -> ciel étoilé (accueil)
-    img/portrait.jpg  -> photo de profil
-    img/nuages.jpg    -> ciel nuageux (compétences)
-    img/arbre.jpg     -> arbre dans la brume (contact)
-  Tant que les images n'existent pas, des dégradés prennent leur place.
-*/
+:root{
+    --bg:#f8fafc;
+    --card:#ffffff;
+    --text:#1e293b;
+    --text-light:#64748b;
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    --primary:#2563eb;
+    --secondary:#7c3aed;
+    --accent:#06b6d4;
+
+    --dark:#0f172a;
+    --border:#e2e8f0;
+
+    scroll-behavior:smooth;
 }
 
-html {
-  scroll-behavior: smooth;
+/* RESET */
+
+body{
+    margin:0;
+    padding:0;
+    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+    color:var(--text);
+    background:var(--bg);
 }
 
-body {
-  font-family: "Open Sans Condensed", "Arial Narrow", Arial, sans-serif;
-  font-weight: 300;
-  color: #000;
-  background: #fff;
+h1,h2,h3,p,ul{
+    margin:0;
+    padding:0;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+/* HEADER */
+
+header{
+    position:sticky;
+    top:0;
+    background:rgba(255,255,255,0.95);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
+    z-index:1000;
 }
 
-ul {
-  list-style: none;
+nav ul{
+    display:flex;
+    justify-content:center;
+    list-style:none;
+    gap:40px;
+    padding:20px;
 }
 
-/* ===== Header / menu ===== */
-#lien {
-  height: 82px;
-  background: #fff;
+nav a{
+    text-decoration:none;
+    color:var(--text);
+    font-size:.9rem;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    position:relative;
+    transition:.3s;
 }
 
-.menu {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+nav a::after{
+    content:"";
+    position:absolute;
+    width:0;
+    height:3px;
+    bottom:-6px;
+    left:0;
+    background:linear-gradient(
+        90deg,
+        var(--primary),
+        var(--secondary)
+    );
+    transition:.3s;
+    border-radius:10px;
 }
 
-.menu a {
-  width: 172px;
-  text-align: center;
-  text-transform: uppercase;
-  font-size: 16px;
-  color: #222;
-  transition: color .2s;
+nav a:hover{
+    color:var(--primary);
 }
 
-.menu a:hover {
-  color: #3a6bb0;
+nav a:hover::after{
+    width:100%;
 }
 
-/* ===== Accueil ===== */
-.accueil {
-  height: 656px;
-  padding-top: 100px;
-  text-align: center;
-  color: #fff;
-  background:
-    url("img/etoiles.jpg") center / cover no-repeat,
-    radial-gradient(circle at 20% 30%, #0e3a63 0%, transparent 45%),
-    radial-gradient(circle at 80% 70%, #0b3055 0%, transparent 50%),
-    linear-gradient(180deg, #060f26 0%, #0b2347 55%, #0a3a5c 100%);
+/* ANIMATION */
+
+@keyframes apparition{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
 }
 
-.portrait {
-  width: 200px;
-  height: 200px;
-  margin: 0 auto;
-  border-radius: 50%;
-  background:
-    url("img/portrait.jpg") center / cover no-repeat,
-    radial-gradient(circle at 50% 38%, #bbb 0 28%, #888 29% 100%);
-  border: 0;
+#accueil,
+#educations,
+#experiences,
+#informations{
+    scroll-margin-top:70px;
 }
 
-.accueil h1 {
-  margin-top: 16px;
-  font-size: 48px;
-  font-weight: 300;
-  line-height: 1.2;
+/* ACCUEIL */
+
+#accueil{
+    min-height:90vh;
+
+    background:
+    linear-gradient(
+        135deg,
+        #0f172a,
+        #1e3a8a,
+        #2563eb
+    );
+
+    color:white;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+
+    padding:40px 20px;
+    box-sizing:border-box;
 }
 
-.metier {
-  margin-top: 4px;
-  font-size: 20px;
-  color: rgba(255, 255, 255, .7);
+.haut{
+    animation:apparition 1s ease;
 }
 
-/* ===== Réseaux sociaux (accueil + footer) ===== */
-.reseaux {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  gap: 30px;
+.haut img{
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    object-fit:cover;
+    border:5px solid rgba(255,255,255,.9);
+
+    box-shadow:
+        0 20px 40px rgba(0,0,0,.25);
+
+    margin-bottom:25px;
+
+    transition:.4s;
 }
 
-.accueil .reseaux {
-  margin-top: 98px;
+.haut img:hover{
+    transform:scale(1.08);
 }
 
-.reseaux a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 50px;
-  min-width: 36px;
-  padding: 0 4px 6px;
-  color: rgba(190, 190, 190, .9);
-  border-bottom: 1px solid rgba(255, 255, 255, .5);
-  transition: color .2s;
+.haut h1{
+    font-size:3rem;
+    font-weight:700;
+    margin-bottom:10px;
 }
 
-.reseaux a:hover {
-  color: #fff;
+.haut p{
+    font-size:1.15rem;
+    color:#cbd5e1;
+    margin-bottom:35px;
 }
 
-.logo-in {
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: 700;
-  font-size: 34px;
-  line-height: 1;
-  letter-spacing: -1px;
+/* LIENS */
+
+.liens{
+    display:flex;
+    justify-content:center;
+    gap:15px;
 }
 
-/* ===== Grille 2 x 2 ===== */
-.grille {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+.liens a{
+    text-decoration:none;
+    color:white;
+
+    padding:10px 20px;
+
+    border-radius:50px;
+
+    border:1px solid rgba(255,255,255,.3);
+
+    transition:.3s;
 }
 
-.bloc {
-  min-height: 602px;
-  position: relative;
+.liens a:hover{
+    background:var(--accent);
+    border-color:var(--accent);
+
+    transform:translateY(-3px);
 }
 
-/* ===== Blocs texte (éducations / expériences) ===== */
-.bloc-texte {
-  background: #fff;
-  padding: 25px 17px 40px;
+/* SECTIONS */
+
+#educations,
+#experiences,
+#informations{
+    display:flex;
+    min-height:70vh;
 }
 
-.bloc-texte h2 {
-  font-size: 26px;
-  font-weight: 400;
-  line-height: 1.2;
-  padding-bottom: 13px;
-  border-bottom: 1px solid #000;
+.gauche,
+.droite{
+    width:50%;
+    padding:60px 6%;
+    box-sizing:border-box;
 }
 
-.element {
-  display: flex;
-  margin-top: 20px;
-  min-height: 136px;
+.gauche{
+    background-image: url("../image/Photopro.jpg");
+    min-height: 500px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
 }
 
-.element:first-of-type {
-  margin-top: 20px;
+.gauche h2{
+    font-size:2rem;
+    margin-bottom:40px;
+    color:var(--primary);
 }
 
-.element-date {
-  flex: 0 0 231px;
-  padding: 16px 0 0 40px;
-  border-right: 1px solid #bbb;
+/* ARTICLES */
+
+article{
+    display:flex;
+    gap:20px;
+
+    background:var(--card);
+
+    padding:25px;
+    margin-bottom:15px;
+
+    border-radius:16px;
+
+    box-shadow:
+        0 8px 25px rgba(15,23,42,.08);
+
+    transition:.3s;
 }
 
-.date {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 20px;
+article:hover{
+    transform:translateY(-5px);
+
+    box-shadow:
+        0 20px 40px rgba(37,99,235,.15);
 }
 
-.lieu {
-  margin-top: 18px;
-  font-size: 15px;
+.date{
+    width:120px;
+    flex-shrink:0;
+
+    display:flex;
+    flex-direction:column;
+
+    font-size:.85rem;
+    color:var(--text-light);
 }
 
-.element-contenu {
-  flex: 1;
-  padding: 16px 0 0 20px;
-  border-right: 0;
+.date span:first-child{
+    color:var(--primary);
+    font-weight:700;
 }
 
-.element-contenu h3 {
-  font-size: 16px;
-  font-weight: 400;
-  text-transform: uppercase;
-  line-height: 20px;
+.icone{
+    width:55px;
+    height:55px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:12px;
+
+    background:#eff6ff;
+
+    color:var(--primary);
+
+    font-size:1.3rem;
+    font-weight:bold;
+
+    flex-shrink:0;
 }
 
-.element-contenu p {
-  margin-top: 16px;
-  font-size: 15px;
-  line-height: 22px;
+.texte{
+    flex:1;
 }
 
-/* Le bloc expériences a une colonne date plus étroite et une marge à gauche */
-#experiences {
-  padding-left: 17px;
+.texte h3{
+    margin-bottom:8px;
+    color:var(--dark);
+    text-transform:uppercase;
 }
 
-#experiences .element-date {
-  flex-basis: 231px;
+.texte p{
+    color:var(--text-light);
+    line-height:1.6;
 }
 
-/* ===== Compétences (fond ciel) ===== */
-.bloc-ciel {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background:
-    url("img/nuages.jpg") center / cover no-repeat,
-    radial-gradient(ellipse at 25% 20%, #ffffff 0%, transparent 40%),
-    radial-gradient(ellipse at 40% 55%, #dfe7f1 0%, transparent 35%),
-    linear-gradient(160deg, #d9e3ee 0%, #7fa1c9 45%, #2f5f9c 100%);
+/* EDUCATIONS */
+
+#educations .droite{
+    background:
+    linear-gradient(
+        135deg,
+        #1e3a8a,
+        #2563eb,
+        #06b6d4
+    );
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:30px;
+    flex-wrap:wrap;
+    color:white;
 }
 
-.competences {
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
-  padding: 0 40px;
+.cercle{
+    width:120px;
+    height:120px;
+
+    border-radius:50%;
+
+    border:3px solid rgba(255,255,255,.8);
+
+    background:rgba(255,255,255,.15);
+
+    backdrop-filter:blur(8px);
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    transition:.3s;
 }
 
-.competences li {
-  position: relative;
-  width: 100px;
-  text-align: center;
-  color: #fff;
+.cercle:hover{
+    transform:scale(1.1);
+    background:white;
+    color:var(--primary);
 }
 
-.cercle {
-  display: block;
-  width: 100px;
-  height: 100px;
-  transform: rotate(-90deg);
+.cercle span{
+    font-size:1.3rem;
+    font-weight:700;
 }
 
-.cercle circle {
-  fill: none;
-  stroke: #fff;
-  stroke-width: 8;
-  stroke-dasharray: calc(var(--valeur) * 1) calc(100 - var(--valeur));
+.cercle p{
+    margin-top:5px;
+    font-size:.8rem;
 }
 
-.pourcent {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100px;
-  height: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 15px;
+/* EXPERIENCES */
+
+#experiences .droite{
+    background:
+    linear-gradient(
+        135deg,
+        #dbeafe,
+        #eff6ff
+    );
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
 }
 
-.nom {
-  display: block;
-  margin-top: 16px;
-  font-size: 16px;
+#experiences .droite p{
+    font-size:1.4rem;
+    color:var(--dark);
+    margin-bottom:25px;
 }
 
-/* ===== Contact (fond arbre) ===== */
-.bloc-contact {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background:
-    url("img/arbre.jpg") center / cover no-repeat,
-    radial-gradient(ellipse at 50% 100%, #8a7bb8 0%, transparent 55%),
-    linear-gradient(180deg, #fdeee4 0%, #f2e4e4 60%, #d8cde0 100%);
+.bouton{
+    text-decoration:none;
+
+    background:
+    linear-gradient(
+        135deg,
+        var(--primary),
+        var(--secondary)
+    );
+
+    color:white;
+
+    padding:15px 35px;
+
+    border-radius:50px;
+
+    font-weight:600;
+
+    transition:.3s;
 }
 
-.contact {
-  text-align: center;
-  padding-top: 40px;
+.bouton:hover{
+    transform:translateY(-4px);
+
+    box-shadow:
+        0 12px 30px rgba(124,58,237,.3);
 }
 
-.contact p {
-  font-size: 26px;
-  font-weight: 400;
+/* INFORMATIONS */
+
+#informations .droite{
+    background:
+    linear-gradient(
+        135deg,
+        #eef2ff,
+        #dbeafe
+    );
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:25px;
+    flex-wrap:wrap;
 }
 
-.bouton-contact {
-  display: inline-block;
-  margin-top: 16px;
-  padding: 0 58px;
-  height: 54px;
-  line-height: 54px;
-  background: #000;
-  color: #fff;
-  font-size: 26px;
-  font-weight: 400;
-  transition: background .2s;
+.carre{
+    width:120px;
+    height:120px;
+
+    background:white;
+
+    border-radius:18px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    box-shadow:
+        0 10px 30px rgba(15,23,42,.08);
+
+    transition:.3s;
 }
 
-.bouton-contact:hover {
-  background: #3a6bb0;
+.carre:hover{
+    transform:translateY(-8px);
+
+    box-shadow:
+        0 20px 40px rgba(37,99,235,.18);
 }
 
-/* ===== Footer ===== */
-.footer {
-  position: relative;
-  height: 100px;
-  background: #000;
-  color: #fff;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
+.carre span{
+    font-size:1.4rem;
+    font-weight:700;
+    color:var(--primary);
 }
 
-.copyright {
-  justify-self: center;
-  font-size: 15px;
-  font-weight: 400;
-  margin-top: 6px;
-  margin-right: 250px;
+.carre p{
+    margin-top:5px;
+    color:var(--text);
+    font-size:.75rem;
+    font-weight:600;
+    text-transform:uppercase;
 }
 
-.reseaux-footer {
-  justify-content: center;
-  margin-left: 0;
-  padding-top: 4px;
+/* FOOTER */
+
+footer{
+    background:var(--dark);
+    color:#cbd5e1;
+
+    padding:30px 8%;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
 
-/* ===== Responsive ===== */
-@media (max-width: 980px) {
-  .grille {
-    grid-template-columns: 1fr;
-  }
+footer .liens a{
+    border:none;
+}
 
-  .bloc-ciel,
-  .bloc-contact {
-    min-height: 420px;
-  }
+footer .liens a:hover{
+    background:none;
+    color:#60a5fa;
+}
 
-  .menu a {
-    width: auto;
-    padding: 0 12px;
-    font-size: 14px;
-  }
+/* RESPONSIVE */
 
-  .element {
-    flex-direction: column;
-  }
+@media(max-width:900px){
 
-  .element-date {
-    flex-basis: auto;
-    border-right: 0;
-    padding-left: 0;
-  }
+    #educations,
+    #experiences,
+    #informations{
+        flex-direction:column;
+    }
 
-  .element-contenu {
-    padding-left: 0;
-  }
+    .gauche,
+    .droite{
+        width:100%;
+        padding:50px 6%;
+    }
 
-  .footer {
-    grid-template-columns: 1fr;
-    height: auto;
-    padding: 20px 0;
-    gap: 10px;
-  }
+    #experiences .droite{
+        order:2;
+    }
+}
 
-  .copyright {
-    margin: 0;
-  }
+@media(max-width:600px){
+
+    nav ul{
+        flex-wrap:wrap;
+        gap:15px;
+    }
+
+    .haut h1{
+        font-size:2.1rem;
+    }
+
+    article{
+        flex-direction:column;
+    }
+
+    footer{
+        flex-direction:column;
+        text-align:center;
+        gap:15px;
+    }
 }
