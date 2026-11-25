@@ -208,7 +208,7 @@ nav a:hover::after{
 }
 
 .gauche{
-    background-image: url("../image/Photopro.jpg");
+    background-image: url("../image/Photo_profil.webp");
     min-height: 500px;
     background-attachment: fixed;
     background-position: center;
@@ -361,12 +361,7 @@ article:hover{
 /* EXPERIENCES */
 
 #experiences .droite{
-    background:
-    linear-gradient(
-        135deg,
-        #dbeafe,
-        #eff6ff
-    );
+    background-image: url(../image/fond.webp);
 
     display:flex;
     flex-direction:column;
