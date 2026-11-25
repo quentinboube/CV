@@ -231,6 +231,7 @@ nav a:hover::after{
 article{
     display:flex;
     gap:20px;
+    align-items: center;
 
     background:var(--card);
 
@@ -255,6 +256,7 @@ article:hover{
 .date{
     width:120px;
     flex-shrink:0;
+    text-align: center;
 
     display:flex;
     flex-direction:column;
@@ -338,7 +340,6 @@ article:hover{
     flex-direction:column;
     justify-content:center;
     align-items:center;
-
     transition:.3s;
 }
 
@@ -424,9 +425,10 @@ article:hover{
 .carre{
     width:120px;
     height:120px;
+    padding: 10px;
 
     background:white;
-
+    
     border-radius:18px;
 
     display:flex;
@@ -459,6 +461,7 @@ article:hover{
     font-size:.75rem;
     font-weight:600;
     text-transform:uppercase;
+    text-align: center;
 }
 
 /* FOOTER */
